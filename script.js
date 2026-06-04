@@ -3,8 +3,8 @@ const MAPS_DATABASE = {
     clube: {
         name: "Clube",
         location: "Hannover, Alemanha",
-        description: "Um clube industrial fortificado de motoqueiros. Caracteriza-se por confrontos intensos em ambientes fechados com rotas subterrâneas e janelas de rapel cruciais. É um dos mapas mais clássicos e equilibrados do circuito competitivo.",
-        image: "images/clube.jpg",
+        description: "Um clube industrial fortificado de motoqueiros. Caracteriza-se por confrontos intensos em ambientes fechados com rotas subterrâneas e janelas de rapel cruciais. É um dos mapas mais desafiadores para o ataque.",
+        image: "clube",
         stats: {
             dificuldade: 75,
             destruicao: 85,
@@ -44,8 +44,8 @@ const MAPS_DATABASE = {
     chale: {
         name: "Chalé",
         location: "Courchevel, França",
-        description: "Um luxuoso chalé de madeira e pedra nos Alpes Franceses. Composto por uma grande garagem no subsolo e diversos quartos conectados no segundo andar. A limpeza vertical e o controle dos telhados são determinantes para o sucesso do ataque.",
-        image: "images/chale.jpg",
+        description: "Um luxuoso chalé de madeira e pedra nos Alpes Franceses. Composto por uma grande garagem no subsolo e diversos quartos conectados no segundo andar. A limpeza vertical e o controle da garagem são cruciais.",
+        image: "chale",
         stats: {
             dificuldade: 80,
             destruicao: 75,
@@ -84,8 +84,8 @@ const MAPS_DATABASE = {
     oregon: {
         name: "Oregon",
         location: "Redmond, EUA",
-        description: "Um complexo rústico de fazenda com diversas construções interconectadas. Possui rotas de fuga estreitas, um sótão altamente disputado no andar superior e um porão (Lavanderia) que exige forte coordenação para invasão ou defesa.",
-        image: "images/oregon.jpg",
+        description: "Um complexo rústico de fazenda com diversas construções interconectadas. Possui rotas de fuga estreitas, um sótão altamente disputado no andar superior e um porão (Lavatório) com controle crucial.",
+        image: "oregon",
         stats: {
             dificuldade: 70,
             destruicao: 80,
@@ -125,8 +125,8 @@ const MAPS_DATABASE = {
     banco: {
         name: "Banco",
         location: "Los Angeles, EUA",
-        description: "Um banco financeiro imponente com salas de escritórios abertas e um cofre fortificado no subsolo. Os atacantes costumam explorar as claraboias e as janelas de rapel elevadas, exigindo que os defensores controlem as câmeras externas.",
-        image: "images/banco.jpg",
+        description: "Um banco financeiro imponente com salas de escritórios abertas e um cofre fortificado no subsolo. Os atacantes costumam explorar as claraboias e as janelas de rapel elevadas para ganhar vantagem.",
+        image: "banco",
         stats: {
             dificuldade: 85,
             destruicao: 70,
@@ -164,8 +164,8 @@ const MAPS_DATABASE = {
     cafe: {
         name: "Café Dostoyevsky",
         location: "Moscou, Rússia",
-        description: "Um luxuoso café e museu de alta gastronomia em Moscou. O mapa se destaca por sua forte disputa vertical no terceiro andar (Bar e Clarabóia) e na cozinha do andar térreo. Janelas e escadarias dão ritmo frenético à partida.",
-        image: "images/cafe.jpg",
+        description: "Um luxuoso café e museu de alta gastronomia em Moscou. O mapa se destaca por sua forte disputa vertical no terceiro andar (Bar e Clarabóia) e na cozinha do andar térreo.",
+        image: "cafe",
         stats: {
             dificuldade: 78,
             destruicao: 72,
@@ -204,8 +204,8 @@ const MAPS_DATABASE = {
     consulado: {
         name: "Consulado",
         location: "Abidjan, Costa do Marfim",
-        description: "Um prédio consular fortificado na Costa do Marfim. O mapa apresenta confrontos intensos focados em janelas de rapel externas, além de um subsolo (Garagem e Arquivos) altamente disputado por brechas térmicas.",
-        image: "images/consulado.jpg",
+        description: "Um prédio consular fortificado na Costa do Marfim. O mapa apresenta confrontos intensos focados em janelas de rapel externas, além de um subsolo (Garagem e Arquivos) altamente defendi.",
+        image: "consulado",
         stats: {
             dificuldade: 82,
             destruicao: 78,
@@ -297,18 +297,19 @@ document.addEventListener("DOMContentLoaded", () => {
         mapLocationEl.innerHTML = `<span style="font-size:1.2rem;">📍</span> ${mapData.location}`;
         mapDescriptionEl.textContent = mapData.description;
         
-        // Tratamento da imagem do mapa (fallback se o arquivo não existir/for nulo)
+        // Tratamento da imagem do mapa usando getMapImage() para URLs do CDN
         if (mapData.image) {
-            mapHeroImgEl.src = mapData.image;
+            const imageUrl = getMapImage(mapData.image);
+            mapHeroImgEl.src = imageUrl;
             mapHeroImgEl.style.display = "block";
             fallbackHudEl.style.display = "none";
             
-            // Caso ocorra erro ao carregar a imagem (por exemplo, antes do usuário colocar o arquivo lá)
+            // Caso ocorra erro ao carregar a imagem
             mapHeroImgEl.onerror = () => {
                 mapHeroImgEl.style.display = "none";
                 fallbackHudEl.style.display = "flex";
                 const iconSpan = fallbackHudEl.querySelector(".fallback-map-name");
-                if (iconSpan) iconSpan.textContent = `Aguardando Imagem do Mapa: ${mapData.name}.jpg`;
+                if (iconSpan) iconSpan.textContent = `Aguardando Imagem do Mapa: ${mapData.name}`;
             };
         } else {
             mapHeroImgEl.style.display = "none";
