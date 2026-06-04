@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rainbow Six Siege Tactical Hub - Informações, calls principais e os melhores operadores recomendados para os mapas Clube, Chalé, Oregon, Banco e Café Dostoyevsky.">
+    <meta name="keywords" content="Rainbow Six Siege, R6, R6 Siege, Mapas R6, Calls R6, Operadores R6, Clube, Chalé, Oregon, Banco, Café Dostoyevsky">
+    <meta name="author" content="Victor dos Santos">
+    
+    <!-- Open Graph (SEO redes sociais) -->
+    <meta property="og:title" content="R6 Tactical Hub - Guia de Mapas Competitivos">
+    <meta property="og:description" content="Domine as principais calls e conheça os melhores operadores para vencer em cada mapa competitivo do Rainbow Six Siege.">
+    <meta property="og:type" content="website">
+    
+    <title>R6 Tactical Hub - Mapas, Calls e Operadores Competitivos</title>
+    
+    <!-- Link CSS local (Projeto 2) -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Iconografia FontAwesome (CDN para ícones táticos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Linhas HUD decorativas de fundo para estética militar/futurista -->
+    <div class="hud-grid"></div>
+    <div class="hud-lines"></div>
+
+    <!-- CABEÇALHO -->
+    <header class="site-header" id="main-header">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-crosshairs" style="color: #fff; font-size: 0.9rem; transform: rotate(-45deg);"></i>
+            </div>
+            <span class="logo-text">R6 TACTICAL HUB</span>
+        </div>
+        <nav aria-label="Navegação Principal">
+            <ul class="nav-links">
+                <li><a href="#mapas" id="nav-link-maps">Mapas</a></li>
+                <li><a href="#calls" id="nav-link-calls">Calls</a></li>
+                <li><a href="#operadores" id="nav-link-ops">Operadores</a></li>
+                <li><a href="#estrategia" id="nav-link-feedback">Enviar Estratégia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SELETOR DE MAPAS PRINCIPAL -->
+    <section class="map-selector-section" id="mapas" aria-label="Seletor de Mapas">
+        <div class="map-selector-container">
+            <button class="map-tab active" data-map="clube" id="tab-clube">Clube</button>
+            <button class="map-tab" data-map="chale" id="tab-chale">Chalé</button>
+            <button class="map-tab" data-map="oregon" id="tab-oregon">Oregon</button>
+            <button class="map-tab" data-map="banco" id="tab-banco">Banco</button>
+            <button class="map-tab" data-map="cafe" id="tab-cafe">Café Dostoyevsky</button>
+            <button class="map-tab" data-map="consulado" id="tab-consulado">Consulado</button>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL (DADOS DO MAPA SELECIONADO) -->
+    <main class="main-container" id="dynamic-map-content">
+        
+        <!-- COLUNA ESQUERDA: VISUAL GIGANTE E ESTATÍSTICAS -->
+        <section class="map-visual-panel" aria-label="Painel Visual do Mapa">
+            
+            <!-- Hero Image Wrapper -->
+            <div class="map-hero-wrapper" id="hero-wrapper">
+                
+                <!-- Imagem grande do mapa (será inserida/atualizada via JS) -->
+                <img src="" alt="Imagem do Mapa R6" class="map-image" id="map-hero-img" style="display: none;">
+                
+                <!-- HUD de Fallback para quando o usuário ainda não adicionou a imagem física -->
+                <div class="map-image-fallback" id="fallback-hud">
+                    <div class="fallback-hud">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span class="fallback-map-name" style="font-weight: 700; display: block; margin-top: 10px;">Carregando dados táticos...</span>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Coloque o arquivo de imagem correspondente na pasta "images/" para exibir.</p>
+                    </div>
+                </div>
+                
+                <!-- Overlay Escuro + Meta Informações do Mapa -->
+                <div class="map-overlay">
+                    <div class="map-meta">
+                        <span class="map-location" id="map-location">📍 Hannover, Alemanha</span>
+                        <h1 class="map-name" id="map-name">Clube</h1>
+                        <p class="map-description" id="map-description">Carregando descrição detalhada do mapa...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel de Estatísticas Táticas (Dificuldade, Destrutibilidade, etc.) -->
+            <div class="stats-container" id="stats-panel">
+                <!-- Dificuldade -->
+                <div class="stat-box">
+                    <div class="stat-label">Dificuldade Geral</div>
+                    <div class="stat-progress-bg">
+                        <div class="stat-progress-bar" id="bar-dificuldade"></div>
+                    </div>
+                    <div class="stat-value" id="val-dificuldade">--%</div>
+                </div>
+                <!-- Destrutibilidade -->
+                <div class="stat-box">
+                    <div class="stat-label">Nível de Destruição</div>
+                    <div class="stat-progress-bg">
+                        <div class="stat-progress-bar" id="bar-destruicao"></div>
+                    </div>
+                    <div class="stat-value" id="val-destruicao">--%</div>
+                </div>
+                <!-- Verticalidade -->
+                <div class="stat-box">
+                    <div class="stat-label">Jogo Vertical</div>
+                    <div class="stat-progress-bg">
+                        <div class="stat-progress-bar" id="bar-verticalidade"></div>
+                    </div>
+                    <div class="stat-value" id="val-verticalidade">--%</div>
+                </div>
+            </div>
+
+            <!-- Carrossel de Operadores Recomendados (lado esquerdo, abaixo das estatísticas) -->
+            <section class="recommended-carousel-panel" aria-label="Carrossel de Operadores Recomendados">
+                <div class="carousel-header">
+                    <h2><i class="fa-solid fa-award"></i> Operadores Recomendados</h2>
+                    <p id="carousel-description">Operadores em destaque para cada mapa; imagens carregam conforme disponíveis na pasta.</p>
+                </div>
+                <div class="carousel-wrapper" id="recommended-carousel">
+                    <!-- Conteúdo gerado dinamicamente pelo JS -->
+                </div>
+            </section>
+
+        </section>
+
+        <!-- COLUNA DIREITA: INFORMACÕES DE TEXTO (CALLS E OPERADORES) -->
+        <section class="map-info-panel" aria-label="Informações Táticas Avançadas">
+            
+            <!-- Cards de Principais Calls -->
+            <article class="info-card" id="calls">
+                <h2 class="card-title">
+                    <i class="fa-solid fa-bullseye"></i> Principais Calls (Locais)
+                </h2>
+                <div class="calls-list" id="calls-list">
+                    <!-- Gerado dinamicamente pelo JS -->
+                </div>
+            </article>
+
+            <!-- Cards de Melhores Operadores -->
+            <article class="info-card" id="operadores">
+                <h2 class="card-title">
+                    <i class="fa-solid fa-user-shield"></i> Operadores Recomendados
+                </h2>
+                <div class="operators-container">
+                    
+                    <!-- Ataque -->
+                    <div class="side-block attack">
+                        <h3 class="side-title">
+                            <i class="fa-solid fa-gun"></i> Recomendados no Ataque
+                        </h3>
+                        <div class="ops-grid" id="attack-ops">
+                            <!-- Gerado dinamicamente pelo JS -->
+                        </div>
+                    </div>
+
+                    <!-- Defesa -->
+                    <div class="side-block defense">
+                        <h3 class="side-title">
+                            <i class="fa-solid fa-shield-halved"></i> Recomendados na Defesa
+                        </h3>
+                        <div class="ops-grid" id="defense-ops">
+                            <!-- Gerado dinamicamente pelo JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- FORMULÁRIO DE FEEDBACK / SUGESTÃO DE ESTRATÉGIA -->
+    <section class="contact-section" id="estrategia" aria-label="Enviar Estratégia de Combate">
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Sugira uma Estratégia Tática</h2>
+                <p>Encontrou um bom pixel de mira ou tem uma estratégia para um dos mapas? Envie para nós!</p>
+            </div>
+            
+            <form class="tactical-form" id="tacticalForm">
+                
+                <!-- Nome/Codinome do Operador -->
+                <div class="form-group">
+                    <label for="opName">Seu Codinome (Player ID)</label>
+                    <input type="text" id="opName" name="opName" class="form-control" placeholder="Ex: Sledge_BR" required>
+                </div>
+
+                <!-- Escolha de Mapa -->
+                <div class="form-group">
+                    <label for="selectMap">Selecione o Mapa Relacionado</label>
+                    <select id="selectMap" name="selectMap" class="form-control" required>
+                        <option value="clube">Clube</option>
+                        <option value="chale">Chalé</option>
+                        <option value="oregon">Oregon</option>
+                        <option value="banco">Banco</option>
+                        <option value="cafe">Café Dostoyevsky</option>
+                        <option value="consulado">Consulado</option>
+                    </select>
+                </div>
+
+                <!-- Descrição da Estratégia -->
+                <div class="form-group full-width">
+                    <label for="strategyDesc">Descrição da Tática / Pixel de Mira</label>
+                    <textarea id="strategyDesc" name="strategyDesc" class="form-control" placeholder="Ex: Posição de Mira na Garagem usando Kaid..." required></textarea>
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit" class="btn-submit" id="btnSubmitStrategy">Transmitir Dados</button>
+
+                <!-- Feedback de Status -->
+                <div class="form-status" id="formStatus" aria-live="polite"></div>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="site-footer">
+        <div class="footer-logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-crosshairs" style="color: #fff; font-size: 0.6rem; transform: rotate(-45deg);"></i>
+            </div>
+            <span>R6 TACTICAL HUB</span>
+        </div>
+        <p>© 2026 R6 Tactical Hub. Todos os direitos reservados.</p>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">Este site é um guia de fãs independente e não é afiliado à Ubisoft Entertainment.</p>
+    </footer>
+
+    <!-- Link JS local (Projeto 2) -->
+    <script src="script.js"></script>
+</body>
+</html>
