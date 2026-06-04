@@ -10,7 +10,6 @@ const MAP_IMAGES = {
     "cafe":      "images/cafe.jpg",
     "consulado": "images/consulado.jpg"
 };
-};
 
 // Imagens dos Operadores
 const OPERATOR_IMAGES = {
