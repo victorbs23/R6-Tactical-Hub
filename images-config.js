@@ -6,7 +6,7 @@ const MAP_IMAGES = {
     "clube": "https://via.placeholder.com/1600x900/1a1a2e/00d4ff?text=CLUBE+-+Hannover",
     "chale": "https://via.placeholder.com/1600x900/2d1b4e/ff007f?text=CHALÉ+-+Courchevel",
     "oregon": "https://via.placeholder.com/1600x900/1a2e2e/00f0ff?text=OREGON+-+Redmond",
-    "banco": "https://via.placeholder.com/1600x900/3d2e1a/9d4edd?text=BANCO+-+Los+Angeles",
+    "banco": "banco.jpg",
     "cafe": "https://via.placeholder.com/1600x900/2e1a1a/ff007f?text=CAFÉ+-+Moscou",
     "consulado": "https://via.placeholder.com/1600x900/1a2e3d/00f0ff?text=CONSULADO+-+Costa+Marfim"
 };
