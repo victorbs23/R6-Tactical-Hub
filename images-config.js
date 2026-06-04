@@ -3,12 +3,12 @@
 
 // Imagens dos Mapas
 const MAP_IMAGES = {
-    "clube":     "images/clube.jpg",
-    "chale":     "images/chale.jpg",
-    "oregon":    "images/oregon.jpg",
-    "banco":     "images/banco.jpg",
-    "cafe":      "images/cafe.jpg",
-    "consulado": "images/consulado.jpg"
+    "clube":     "image/clube.jpg",
+    "chale":     "image/chale.jpg",
+    "oregon":    "image/oregon.jpg",
+    "banco":     "image/banco.jpg",
+    "cafe":      "image/cafe.jpg",
+    "consulado": "image/consulado.jpg"
 };
 
 // Imagens dos Operadores
