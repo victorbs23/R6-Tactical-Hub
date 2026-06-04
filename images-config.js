@@ -3,12 +3,13 @@
 
 // Imagens dos Mapas
 const MAP_IMAGES = {
-    "clube":     "https://placehold.co/1600x900/1a1a2e/00d4ff?text=CLUBE+-+Hannover",
-    "chale":     "https://placehold.co/1600x900/2d1b4e/ff007f?text=CHALÉ+-+Courchevel",
-    "oregon":    "https://placehold.co/1600x900/1a2e2e/00f0ff?text=OREGON+-+Redmond",
-    "banco":     "https://placehold.co/1600x900/2d1b4e/ff007f?text=BANCO+-+Los+Angeles",
-    "cafe":      "https://placehold.co/1600x900/2e1a1a/ff007f?text=CAFÉ+-+Moscou",
-    "consulado": "https://placehold.co/1600x900/1a2e3d/00f0ff?text=CONSULADO+-+Costa+do+Marfim"
+    "clube":     "images/clube.jpg",
+    "chale":     "images/chale.jpg",
+    "oregon":    "images/oregon.jpg",
+    "banco":     "images/banco.jpg",
+    "cafe":      "images/cafe.jpg",
+    "consulado": "images/consulado.jpg"
+};
 };
 
 // Imagens dos Operadores
